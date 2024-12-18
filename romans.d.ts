@@ -1,8 +1,4 @@
-declare module 'romans' {
-  const allChars: string[]
-  const allNumerals: number[]
-  const romanize: (decimal: number) => string
-  const deromanize: (romanStr: string) => number
-
-  export { deromanize, romanize, allChars, allNumerals }
-}
+export function deromanize(romanStr: string): number;
+export function romanize(decimal: number): string;
+export const allChars: string[];
+export const allNumerals: number[];

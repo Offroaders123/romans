@@ -1,3 +1,4 @@
+/** @type {Record<string, number>} */
 const roman_map = {
   M: 1000,
   CM: 900,
@@ -14,11 +15,17 @@ const roman_map = {
   I: 1
 }
 
+/** @type {string[]} */
 const allChars = Object.keys(roman_map)
+/** @type {number[]} */
 const allNumerals = Object.values(roman_map)
 const romanPattern =
   /^(M{1,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})|M{0,4}(CM|C?D|D?C{1,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})|M{0,4}(CM|CD|D?C{0,3})(XC|X?L|L?X{1,3})(IX|IV|V?I{0,3})|M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|I?V|V?I{1,3}))$/
 
+/**
+ * @param {number} decimal
+ * @returns {string}
+ */
 const romanize = (decimal) => {
   if (
     decimal <= 0 ||
@@ -40,6 +47,10 @@ const romanize = (decimal) => {
   return roman
 }
 
+/**
+ * @param {string} romanStr
+ * @returns {number}
+ */
 const deromanize = (romanStr) => {
   if (typeof romanStr !== 'string') {
     throw new Error('requires a string')

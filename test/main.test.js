@@ -74,48 +74,75 @@ describe('should return errors on bad input', function () {
   })
   it('should reject undefined values', function () {
     expect(function () {
-      romans.romanize(undefined)
+      romans.romanize(
+        // @ts-expect-error
+        undefined
+      )
     }).toThrow()
   })
   it('should reject null values', function () {
     expect(function () {
-      romans.romanize(null)
+      romans.romanize(
+        // @ts-expect-error
+        null
+      )
     }).toThrow()
   })
   it('should reject blank values', function () {
     expect(function () {
-      romans.romanize('')
+      romans.romanize(
+        // @ts-expect-error
+        ''
+      )
     }).toThrow()
   })
   it('should reject blank values', function () {
     expect(function () {
-      romans.romanize('1000')
+      romans.romanize(
+        // @ts-expect-error
+        '1000'
+      )
     }).toThrow()
   })
   it('should throw on non-string input', function () {
     expect(function () {
-      romans.deromanize(1000)
+      romans.deromanize(
+        // @ts-expect-error
+        1000
+      )
     }).toThrow()
 
     expect(function () {
-      romans.deromanize({ value: 'III' })
+      romans.deromanize(
+        // @ts-expect-error
+        { value: 'III' }
+      )
     }).toThrow()
 
     expect(function () {
-      romans.deromanize(true)
+      romans.deromanize(
+        // @ts-expect-error
+        true
+      )
     }).toThrow()
 
     expect(function () {
-      romans.deromanize({
-        toUpperCase: function () {
-          return 'III'
+      romans.deromanize(
+        // @ts-expect-error
+        {
+          toUpperCase: function () {
+            return 'III'
+          }
         }
-      })
+      )
     }).toThrow()
   })
   it('should reject objects', function () {
     expect(function () {
-      romans.romanize({ value: 1000 })
+      romans.romanize(
+        // @ts-expect-error
+        { value: 1000 }
+      )
     }).toThrow()
   })
   it('should reject float values', function () {
@@ -126,6 +153,7 @@ describe('should return errors on bad input', function () {
 })
 
 describe('it should return solid integer numbers', function () {
+  /** @type {string[]} */
   const testIntegers = []
   for (var i = 0; i < 35; i++) {
     var obj = getRandomInt(1, 3999)
@@ -142,6 +170,25 @@ describe('should have a consistent api signature', function () {
   expect(romans).toHaveProperty('allNumerals')
 })
 
+/**
+ * @typedef {{ "string": string; "number": number; "bigint": bigint; "boolean": boolean; "symbol": symbol; "undefined": undefined; "object": object; "function": Function; }} PrimitiveNameMap
+ */
+
+/**
+ * @typedef {keyof PrimitiveNameMap} PrimitiveName
+ */
+
+/**
+ * @template {PrimitiveName} T
+ * @typedef {PrimitiveNameMap[T]} Primitive
+ */
+
+/**
+ * @template {PrimitiveName} T
+ * @param {PrimitiveNameMap[T][]} arrayToCheck
+ * @param {T} expectedType
+ * @returns {arrayToCheck is PrimitiveNameMap[T][]}
+ */
 function validateForType(arrayToCheck, expectedType) {
   for (var i = 0; i < arrayToCheck.length; i++) {
     var value = arrayToCheck[i]
@@ -152,6 +199,11 @@ function validateForType(arrayToCheck, expectedType) {
   return true
 }
 
+/**
+ * @param {number} min
+ * @param {number} max
+ * @returns {number}
+ */
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }

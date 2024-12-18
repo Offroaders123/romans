@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./",
+    "outDir": "./",
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true, // temp
+    "sourceMap": true
+  },
+  "include": [
+    "./**/*"
+  ],
+  "exclude": [
+    "./**/*.d.ts", // temp
+    "./coverage", // temp
+    "./dist", // temp
+    "./test"
+  ]
+}
