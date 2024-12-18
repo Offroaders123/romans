@@ -2,8 +2,8 @@
   "name": "romans",
   "version": "2.0.18",
   "description": "A small, no-dependency lib for converting to and from roman numerals",
-  "main": "romans.js",
-  "types": "romans.d.ts",
+  "main": "./src/romans.js",
+  "types": "./src/romans.d.ts",
   "repository": "git@github.com:qbunt/romans.git",
   "keywords": [
     "roman",

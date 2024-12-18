@@ -1,6 +1,6 @@
 /* eslint-disable */
-const romans = require('../romans')
-const { deromanize } = require('../romans')
+const romans = require('../src/romans')
+const { deromanize } = require('../src/romans')
 
 describe(`needs some methods`, () => {
   it('should be an object', () => {
