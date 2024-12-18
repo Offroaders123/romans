@@ -17,7 +17,7 @@ $ yarn add romans
 ## Usage
 
 ```js
-const romans = require('romans');
+import * as romans from 'romans';
 romans.romanize(454)
 // returns: 'CDLIV'
 

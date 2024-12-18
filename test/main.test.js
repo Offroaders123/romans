@@ -1,6 +1,6 @@
 /* eslint-disable */
-const romans = require('../src/romans')
-const { deromanize } = require('../src/romans')
+import * as romans from '../src/romans.js'
+import { deromanize } from '../src/romans.js'
 
 describe(`needs some methods`, () => {
   it('should be an object', () => {

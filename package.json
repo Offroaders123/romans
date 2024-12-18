@@ -2,6 +2,7 @@
   "name": "romans",
   "version": "2.0.18",
   "description": "A small, no-dependency lib for converting to and from roman numerals",
+  "type": "module",
   "main": "./src/romans.js",
   "types": "./src/romans.d.ts",
   "repository": "git@github.com:qbunt/romans.git",
@@ -13,13 +14,14 @@
   "scripts": {
     "build": "tsc --project ./tsconfig.build.json",
     "dev": "tsc --watch",
-    "test": "jest",
-    "ci": "jest --coverage",
-    "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "test-with-coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage && cat ./coverage/lcov.info | codacy-coverage"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "transform": {}
   },
   "author": "qbunt",
   "license": "MIT",

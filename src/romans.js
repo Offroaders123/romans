@@ -72,7 +72,7 @@ const deromanize = (romanStr) => {
   return arabic
 }
 
-module.exports = {
+export {
   deromanize,
   romanize,
   allChars,
