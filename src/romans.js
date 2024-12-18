@@ -19,6 +19,7 @@ const roman_map = {
 const allChars = Object.keys(roman_map)
 /** @type {number[]} */
 const allNumerals = Object.values(roman_map)
+/** @type {RegExp} */
 const romanPattern =
   /^(M{1,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})|M{0,4}(CM|C?D|D?C{1,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})|M{0,4}(CM|CD|D?C{0,3})(XC|X?L|L?X{1,3})(IX|IV|V?I{0,3})|M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|I?V|V?I{1,3}))$/
 
@@ -37,10 +38,11 @@ const romanize = (decimal) => {
   if (decimal >= 4000) {
     throw new Error('requires max value of less than 3999 or less')
   }
+  /** @type {string} */
   let roman = ''
-  for (let i = 0; i < allChars.length; i++) {
-    while (decimal >= allNumerals[i]) {
-      decimal -= allNumerals[i]
+  for (let /** @type {number} */ i = 0; i < allChars.length; i++) {
+    while (decimal >= /** @type {number} */ (allNumerals[i])) {
+      decimal -= /** @type {number} */ (allNumerals[i])
       roman += allChars[i]
     }
   }
@@ -58,12 +60,16 @@ const deromanize = (romanStr) => {
   if (!romanPattern.test(romanStr)) {
     throw new Error('requires valid roman numeral string')
   }
+  /** @type {string} */
   let romanString = romanStr.toUpperCase()
+  /** @type {number} */
   let arabic = 0
+  /** @type {number} */
   let iteration = romanString.length
   while (iteration--) {
-    let cumulative = roman_map[romanString[iteration]]
-    if (cumulative < roman_map[romanString[iteration + 1]]) {
+    /** @type {number} */
+    let cumulative = /** @type {number} */ (roman_map[/** @type {string} */ (romanString[iteration])])
+    if (cumulative < /** @type {number} */ (roman_map[/** @type {string} */ (romanString[iteration + 1])])) {
       arabic -= cumulative
     } else {
       arabic += cumulative

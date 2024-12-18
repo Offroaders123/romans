@@ -18,12 +18,15 @@ describe(`needs some methods`, () => {
 
 describe('check for parity on input & output', function () {
   it('should return the same value on conversion', function () {
+    /** @type {string} */
     const myRoman = 'CCLIV'
+    /** @type {number} */
     const myArabic = romans.deromanize(myRoman)
     expect(myArabic).toEqual(romans.deromanize(myRoman))
   })
 
   it('should throw on mixed cases', function () {
+    /** @type {string[]} */
     const myStrings = ['mXvIi', 'dcvii', 'mmILV']
     myStrings.forEach((k) => {
       expect(function () {
@@ -45,11 +48,13 @@ describe('check for parity on input & output', function () {
 
 describe('ensure formatting of data structures is sound', function () {
   it('should contain only characters', function () {
+    /** @type {string[]} */
     const myValues = romans.allChars
     expect(validateForType(myValues, 'string')).toBeTruthy()
   })
 
   it('should contain only numbers', function () {
+    /** @type {number[]} */
     const myValues = romans.allNumerals
     expect(validateForType(myValues, 'number')).toBeTruthy()
   })
@@ -155,7 +160,8 @@ describe('should return errors on bad input', function () {
 describe('it should return solid integer numbers', function () {
   /** @type {string[]} */
   const testIntegers = []
-  for (var i = 0; i < 35; i++) {
+  for (var /** @type {number} */ i = 0; i < 35; i++) {
+    /** @type {number} */
     var obj = getRandomInt(1, 3999)
     testIntegers.push(romans.romanize(obj))
   }
@@ -190,8 +196,9 @@ describe('should have a consistent api signature', function () {
  * @returns {arrayToCheck is PrimitiveNameMap[T][]}
  */
 function validateForType(arrayToCheck, expectedType) {
-  for (var i = 0; i < arrayToCheck.length; i++) {
-    var value = arrayToCheck[i]
+  for (var /** @type {number} */ i = 0; i < arrayToCheck.length; i++) {
+    /** @type {PrimitiveNameMap[T]} */
+    var value = /** @type {PrimitiveNameMap[T]} */ (arrayToCheck[i])
     if (typeof value !== expectedType) {
       return false
     }
